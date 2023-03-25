@@ -9,6 +9,12 @@ jobs:
     steps:
       - name: 저장소 Checkout
         uses: actions/checkout@v3
+        
+      - name: yml 생성
+        run: touch ./src/main/resources/application.yml
+      - name: yml 작성
+        run: echo "${{ secrets.APPLICATION_YML }}" > ./src/main/resources/application.yml
+        
 
       - name: 스프링부트 애플리케이션 빌드 # (1)
         run: ./gradlew build -x test
