@@ -27,7 +27,9 @@ jobs:
         run: docker build -t ${{ secrets.DOCKER_IMG }} .
         
       - name: 도커 이미지 푸시
-        run: docker push ${{ secrets.DOCKER_IMG }} 
+        run: |
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          docker push ${{ secrets.DOCKER_IMG }} 
         
       - name: 배포
         uses: appleboy/ssh-action@v0.1.6
