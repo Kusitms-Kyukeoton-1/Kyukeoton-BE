@@ -10,6 +10,8 @@ jobs:
       - name: 저장소 Checkout
         uses: actions/checkout@v3
         
+      - name: resources 디렉 생성
+        run: mkdir ./src/main/resources
       - name: yml 생성
         run: touch ./src/main/resources/application.yml
       - name: yml 작성
