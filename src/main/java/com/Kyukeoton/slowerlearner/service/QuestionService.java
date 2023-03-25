@@ -26,7 +26,7 @@ public class QuestionService {
 
     private static void validateQuestionSize(List<Question> questions) {
         if (questions.isEmpty()) {
-            throw new BusinessException("존재하지 않는 카테고리의 문제입니다");
+            throw new BusinessException("존재하지 않는 카테고리 문제입니다!!!");
         }
     }
 }
