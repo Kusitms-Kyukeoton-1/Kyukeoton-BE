@@ -15,12 +15,12 @@ public class CategoryResponse {
 
     private Long categoryId;
     private String name;
-    private List<SubCategoryResponse> subCategoryResponses;
+    private List<SubCategoryResponse> subCategories;
 
     public CategoryResponse(Category category) {
         this.categoryId = category.getId();
         this.name = category.getName();
-        this.subCategoryResponses = category.getSubCategories()
+        this.subCategories = category.getSubCategories()
                 .stream()
                 .map(SubCategoryResponse::new)
                 .collect(Collectors.toList());
