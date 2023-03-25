@@ -32,7 +32,7 @@ jobs:
           docker push ${{ secrets.DOCKER_IMG }} 
 
       - name: 배포
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@v0.1.4
         with:
           host: ${{ secrets.WAS_HOST }}
           username: ${{ secrets.WAS_USERNAME }}
