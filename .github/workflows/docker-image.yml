@@ -10,18 +10,19 @@ jobs:
       - name: 저장소 Checkout
         uses: actions/checkout@v3
         
-      - name: resources 디렉 생성
-        run: mkdir ./src/main/resources
-      - name: yml 생성
-        run: touch ./src/main/resources/application.yml
-      - name: yml 작성
-        run: echo "${{ secrets.APPLICATION_YML }}" > ./src/main/resources/application.yml
+      - uses: actions/checkout@v3
+      - run: touch ./src/main/resources/application.yml
+      - run: echo "${{ secrets.APPLICATION_YML }}" > ./src/main/resources/application.yml
+      - uses: actions/upload-artifact@v2
+        with:
+          name: application.yml
+          path: ./src/main/resources/application.yml
         
 
-      - name: 스프링부트 애플리케이션 빌드 # (1)
+      - name: 스프링부트 애플리케이션 빌드
         run: ./gradlew build -x test
 
-      - name: 도커 이미지 빌드 # (2)
+      - name: 도커 이미지 빌드
         run: docker build -t ${{ secrets.DOCKER_IMG }} .
         
       - name: 도커 이미지 푸시
